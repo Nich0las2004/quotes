@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { Fragment } from "react";
 
-function App() {
+const quotes = [
+  "The way to get started is to quit talking and begin doing.",
+  "If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough.",
+  "Life is what happens when you're busy making other plans.",
+  "It is during our darkest moments that we must focus to see the light.",
+];
+
+const App = () => {
+  const [index, setIndex] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Fragment>
+      <h1>Quotes</h1>
+      <div className="container">
+        <button
+          type="button"
+          className="arrows"
+          onClick={() => {
+            if (index == 0) {
+              setIndex(3);
+            } else {
+              setIndex(index - 1);
+            }
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          &larr;
+        </button>
+        {quotes[index] && <p>"{quotes[index]}"</p>}
+        <button
+          type="button"
+          className="arrows"
+          onClick={() => {
+            if (index == 3) {
+              setIndex(0);
+            } else {
+              setIndex(index + 1);
+            }
+          }}
+        >
+          &rarr;
+        </button>
+      </div>
+    </Fragment>
   );
-}
+};
 
 export default App;
